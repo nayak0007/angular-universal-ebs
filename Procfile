@@ -1,0 +1,1 @@
+web: node dist/ssrebs/server/main.js

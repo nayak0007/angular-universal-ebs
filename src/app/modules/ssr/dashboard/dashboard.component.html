@@ -1,0 +1,51 @@
+<section class="home py-5 d-flex align-items-center" id="header">
+    <div class="container text-light py-5" data-aos="fade-right">
+        <h1 class="headline">India <span class="home_text">Covid-19</span> data</h1>
+        <div class="row">
+            <h2>Statewise Breakup</h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 tableFixHead">
+                <table class="table table-dark table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th>State</th>
+                            <th>Active Cases</th>
+                            <th>Confirmed Cases</th>
+                            <th>Deaths</th>
+                            <th>Recovered</th>
+                            <th>Last updated on</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let row of stateCoviddata;let i=index;">
+                            <tr *ngIf="i > 0">
+                                <td>{{row.state}}</td>
+                                <td>{{row.active}}</td>
+                                <td>{{row.confirmed}}</td>
+                                <td>{{row.deaths}}</td>
+                                <td>{{row.recovered}}</td>
+                                <td>{{row.lastupdatedtime}}</td>
+                                <td><a href="javascript:void(0);" (click)="visualize(row)">Visualize</a></td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row" *ngIf="selectedRow">
+            <div class="col-sm-12" style="min-height: 10px;"></div>
+            <div class="col-sm-12" style="min-height: 300px;">
+                <app-barchart
+                    [data]="selectedRow"
+                    [keys]="keys"
+                    [label]="chartLabel"
+                    [title]="chartTitle"
+                >
+
+                </app-barchart>
+            </div>
+        </div>
+    </div> <!-- end of container -->
+</section>
